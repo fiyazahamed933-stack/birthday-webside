@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> anees this for you  🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    /* General Body and Animation Setup */
+    body {
+        font-family: 'Quicksand', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
+        color: #333;
+        text-align: center;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        position: relative;
+    }
+
+    /* Sakura Petals Animation */
+    .sakura-petal {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background-image: url('https://i.ibb.co/2tVHQ5F/petal.png');
+        background-size: cover;
+        pointer-events: none;
+        z-index: 9999;
+        animation: fall linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes fall {
+        0% { transform: translateY(-50px) translateX(0) rotate(0deg); opacity: 0.8; }
+        25% { transform: translateY(25vh) translateX(10vw) rotate(90deg); }
+        50% { transform: translateY(50vh) translateX(0) rotate(180deg); }
+        75% { transform: translateY(75vh) translateX(-10vw) rotate(270deg); }
+        100% { transform: translateY(100vh) translateX(0) rotate(360deg); opacity: 0; }
+    }
+
+    /* Intro Page Styling */
+    .intro-page {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: rgba(255,182,193,0.9);
+        color: white;
+        text-align: center;
+        transition: opacity 1s ease-in-out;
+        position: relative;
+        z-index: 10;
+    }
+
+    .intro-page h1 {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-shadow: 0 0 15px rgba(255,255,255,0.7), 0 0 30px #f8bbd0;
+        animation: pulseText 2s infinite alternate;
+    }
+
+    @keyframes pulseText {
+        from { transform: scale(1); }
+        to { transform: scale(1.02); text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 0 40px #f8bbd0; }
+    }
+
+    .intro-button {
+        background-color: white;
+        color: #e91e63;
+        border: none;
+        padding: 18px 35px;
+        font-size: 1.3rem;
+        font-weight: bold;
+        border-radius: 50px;
+        cursor: pointer;
+        margin-top: 30px;
+        transition: transform 0.2s ease-out, background-color 0.3s ease;
+        box-shadow: 0 6px 15px rgba(233,30,99,0.4);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .intro-button:hover {
+        transform: scale(1.08);
+        background-color: #ffe6f0;
+    }
+
+    .intro-button:active {
+        animation: bounce 0.3s ease-in-out;
+    }
+
+    @keyframes bounce {
+        0% { transform: scale(1); }
+        50% { transform: scale(0.95); }
+        100% { transform: scale(1); }
+    }
+
+    /* Main Content Styling */
+    .main-content {
+        display: none;
+        padding-top: 80px;
+    }
+
+    .main-content.visible {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    .fade-in-content {
+        animation: fadeIn 1.8s ease-in-out forwards;
+    }
+
+    /* Nav Bar Styling */
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(5px);
+        border-bottom: 1px solid rgba(255,255,255,0.5);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        z-index: 1000;
+        transform: translateY(-100%);
+        animation: slideDownNav 0.7s forwards ease-out 1s;
+    }
+
+    @keyframes slideDownNav {
+        to { transform: translateY(0); }
+    }
+
+    .navbar ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        height: 60px;
+        align-items: center;
+    }
+
+    .navbar li {
+        margin: 0 15px;
+        position: relative;
+    }
+
+    .navbar li:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        right: -15px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 60%;
+        background-color: rgba(216, 27, 96, 0.3);
+    }
+
+    .navbar li a {
+        display: block;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #d81b60;
+        font-weight: 700;
+        font-size: 1.1rem;
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+        text-shadow: 0 0 5px rgba(216, 27, 96, 0.3);
+    }
+
+    .navbar li a:hover {
+        color: #ff80ab;
+        text-shadow: 0 0 10px #ff80ab, 0 0 20px #ffb3d9;
+    }
+
+    /* Message Section Styling */
+    .message-section {
+        padding: 60px 25px;
+        max-width: 1000px; /* Centered content container */
+        margin: 2rem auto; /* Centering the div */
+        background-color: rgba(255,255,255,0.9);
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        line-height: 1.8;
+        padding-bottom: 60px;
+        margin-top: 4rem;
+        position: relative;
+        animation: slideUp 1s ease-out 1.5s forwards;
+        opacity: 0;
+        transform: translateY(20px);
+
+        display: flex; /* Flexbox for the content inside */
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @media (min-width: 768px) {
+        .message-section {
+            flex-direction: row;
+            text-align: left;
+        }
+    }
+
+    @keyframes slideUp {
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .message-text {
+        flex: 1;
+        padding-right: 20px;
+        text-align: center;
+    }
+
+    @media (min-width: 768px) {
+        .message-text {
+            text-align: left;
+        }
+    }
+
+    .message-image-container {
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 300px;
+        margin-top: 20px;
+    }
+
+    @media (min-width: 768px) {
+        .message-image-container {
+            margin-top: 0;
+        }
+    }
+    
+    .message-image {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        transition: transform 0.3s ease;
+    }
+    
+    .message-image:hover {
+        transform: scale(1.03);
+    }
+
+    .message-section h2 {
+        font-size: 2.2rem;
+        color: #d81b60;
+        text-shadow: 0 0 10px rgba(248,187,208,0.8);
+    }
+
+    .message-section p {
+        font-size: 1.1rem;
+        color: #555;
+    }
+
+    /* Gallery Styling */
+    .gallery {
+        padding: 60px 25px;
+        max-width: 1000px; /* Centered content container */
+        margin: 4rem auto; /* Centering the div */
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        cursor: pointer;
+        animation: fadeIn 1.5s ease-out 2s forwards;
+        opacity: 0;
+    }
+
+    @media (min-width: 768px) {
+        .gallery {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+    }
+
+    .gallery-item {
+        background-color: rgba(255,255,255,0.95);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease, background-color 0.4s ease;
+        position: relative;
+    }
+
+    .gallery-item:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    @keyframes popScale {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.03); }
+        100% { transform: scale(1); }
+    }
+
+    .gallery-item.clicked-animate {
+        animation: popScale 0.3s ease-out;
+    }
+    
+    .gallery-item img {
+        width: 100%;
+        height: 320px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    
+    .gallery-item:hover img {
+        transform: scale(1.08) rotate(-1deg);
+    }
+
+    .image-caption {
+        padding: 20px;
+        text-align: left;
+        color: #555;
+        opacity: 1;
+        transition: opacity 0.4s ease;
+    }
+    
+    .image-caption h3 {
+        margin-top: 0;
+        color: #d81b60;
+        text-shadow: 0 0 8px rgba(248,187,208,0.5);
+    }
+
+    /* Footer Styling */
+    .footer {
+        max-width: 1000px; /* Centered content container */
+        margin: 4rem auto; /* Centering the div */
+        padding: 2.5rem;
+        background-color: #a45a80;
+        color: #fff;
+        text-shadow: 0 0 8px rgba(255,255,255,0.4);
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        animation: fadeIn 1.5s ease-out 2.5s forwards;
+        opacity: 0;
+    }
+</style>
+</head>
+<body>
+
+<div class="intro-page">
+    <h1>Happy Birthday, My Sister! 🌸</h1>
+    <p> i made it for you by nasreen </p>
+    <button class="intro-button" onclick="showContent()">Click :)</button>
+</div>
+
+<div class="main-content" id="main-content">
+    <nav class="navbar">
+        <ul>
+            <li><a href="#message">Happy Birthday</a></li>
+            <li><a href="#gallery">Memories</a></li>
+        </ul>
+    </nav>
+
+    <section id="message" class="message-section">
+        <div class="message-text">
+            <h2>“To the best sister in the galaxy, happy birthday!✨🎀</h2>
+            <p>
+                Happy birthday, undenrapu ! “To the best sister in the galaxy, happy birthday! 🌸💫
+                From the moment we laughed together as kids to the times we’ve shared secrets and dreams, you’ve always been my guiding star.
+                Your kindness, strength, and sense of humor light up every room you enter, making life brighter for everyone around you.
+                I’m so grateful for all the memories we’ve created and excited for all the adventures yet to come.
+                May your birthday be filled with magic, love, and endless happiness — just like you deserve!”
+            <p>
+                With all my love,<br>[nasreen]
+            </p>
+        </div>
+        <div class="message-image-container">
+            <img class="message-image" src="541159254_770992572333389_3377369169255230892_n.jpg" alt="A beautiful picture of your sister">
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery">
+        
+        <div class="gallery-item">
+            <img src="541007700_31551208524492514_4269050116438667313_n.jpg" alt="A fun memory photo.">
+            <div class="image-caption">
+                <h3>Our Best Adventure!</h3>
+                <p>Remember that time we explored everywhere? So many laughs!</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="541168557_787152247135005_8943471825262693768_n.jpg" alt="A childhood memory photo.">
+            <div class="image-caption">
+                <h3>Childhood Days</h3>
+                <p>From playing dress-up to sharing secrets, you've always been by my side.</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="541021734_1515641206467362_2995361427664397131_n.jpg" alt="A special day photo.">
+            <div class="image-caption">
+                <h3>Celebrating You!</h3>
+                <p>This was such a special day. So proud of everything you've accomplished.</p>
+            </div>
+        </div>
+        
+    </section>
+
+    <div class="footer">
+        <p> [NAsreen ]  memories made with love.</p>
+    </div>
+</div>
+
+<script>
+// JavaScript to handle content visibility and animations
+function showContent() {
+    const introPage = document.querySelector('.intro-page');
+    const mainContent = document.querySelector('.main-content');
+
+    // Fade out intro page
+    introPage.style.opacity = '0';
+    
+    // After intro fades, hide it and show main content with its own fade-in
+    setTimeout(() => {
+        introPage.style.display = 'none';
+        mainContent.style.display = 'block';
+        mainContent.classList.add('fade-in-content');
+        
+        // Add listeners for gallery items once they are visible
+        addGalleryItemListeners(); 
+    }, 1000); // Matches the intro-page fade-out duration
+
+    // Create sakura petals after a slight delay to allow intro to start fading
+    setTimeout(() => {
+        createSakuraPetals();
+    }, 500); 
+}
+
+// Function to create and animate sakura petals
+function createSakuraPetals() {
+    const numPetals = 40; // More petals for a fuller effect
+    for(let i=0; i < numPetals; i++) {
+        const petal = document.createElement('div');
+        petal.classList.add('sakura-petal');
+        
+        // Random starting position (off-screen top)
+        petal.style.left = Math.random() * 100 + 'vw'; 
+        petal.style.top = Math.random() * -100 + 'px'; // Start higher for longer fall
+
+        // Random animation duration and delay for staggered fall
+        petal.style.animationDuration = (Math.random() * 7 + 8) + 's'; // 8-15 seconds
+        petal.style.animationDelay = Math.random() * 8 + 's'; // 0-8 seconds delay
+
+        // Random initial scale and rotation
+        petal.style.transform = `scale(${Math.random() * 0.7 + 0.3}) rotate(${Math.random() * 360}deg)`;
+        
+        document.body.appendChild(petal);
+    }
+}
+
+// Function to add click event listeners to gallery items
+function addGalleryItemListeners() {
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const pastelColors = [
+        '#ffebee',
+        '#f8bbd0',
+        '#e1bee7',
+        '#dcedc8',
+        '#bbdefb',
+        '#ffecb3'
+    ];
+
+    galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const randomColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+            this.style.backgroundColor = randomColor;
+
+            this.classList.remove('clicked-animate');
+            void this.offsetWidth;
+            this.classList.add('clicked-animate');
+        });
+    });
+}
+
+// Initial call to create sakura petals when the page loads, even before entering
+document.addEventListener('DOMContentLoaded', () => {
+    createSakuraPetals();
+});
+
+</script>
+
+</body>
+</html>
